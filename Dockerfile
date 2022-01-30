@@ -1,5 +1,7 @@
 # Imagem de contêiner que executa seu código
-FROM alpine:3.10    
+FROM ubuntu    
+
+RUN apt-get update -qq && apt-get install -yqq texlive-full texlive-full make  && apt-get autoremove -yqq && apt-get clean
 
 # Copia o arquivo de código do repositório de ação para o caminho do sistema de arquivos `/` do contêiner
 COPY entrypoint-docker.sh /entrypoint.sh
