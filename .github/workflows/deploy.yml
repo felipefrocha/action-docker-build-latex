@@ -4,9 +4,12 @@ on:
   push:
     branches: [ main ]
 
+env:
+  IMAGE_NAME: latexmk
+
 jobs:
   build:
-    name: Build DevContainer
+    name: Deploy Image
     runs-on: ubuntu-latest
     steps:
     
@@ -40,7 +43,7 @@ jobs:
           file: ./Dockerfile.prod
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{env.IMAGE_NAME}}:${{ github.ref }}
+          tags: ghcr.io/${{ github.repository_owner }}/${{env.IMAGE_NAME}}:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           # build-args: ${{ secrets.build_args }}
