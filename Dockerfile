@@ -1,2 +1,2 @@
 # Imagem de contêiner que executa seu código
-FROM 
+FROM ghcr.io/felipefrocha/latexmk
